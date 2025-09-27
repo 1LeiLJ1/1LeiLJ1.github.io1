@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>自然之美 - 风景摄影展示</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>神秘寻宝大冒险</title>
     <style>
         * {
             margin: 0;
@@ -14,511 +13,496 @@
         }
         
         body {
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
-        header {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            color: white;
-            padding: 2rem 0;
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-top: 20px;
+        }
+        
+        h1 {
             text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #ffcc00;
+            background: linear-gradient(to right, #ffcc00, #ff9900);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #cccccc;
+        }
+        
+        .treasure-map {
+            width: 100%;
+            height: 200px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%238B4513"/><path d="M10,10 L90,10 L90,90 L10,90 Z" fill="none" stroke="%23D2B48C" stroke-width="2"/><circle cx="50" cy="50" r="5" fill="%23FFD700"/><path d="M30,30 L70,70 M70,30 L30,70" stroke="%23FFD700" stroke-width="2"/></svg>') center/cover no-repeat;
+            border: 3px solid #8B4513;
+            border-radius: 10px;
+            margin-bottom: 30px;
             position: relative;
             overflow: hidden;
         }
         
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        .tagline {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-        
-        nav {
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1a2a6c;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 2rem;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: #1a2a6c;
-        }
-        
-        .filter-buttons {
+        .controls {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            padding: 1.5rem 0;
-            background-color: #fff;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            gap: 15px;
+            margin-bottom: 30px;
         }
         
-        .filter-btn {
-            background: none;
+        button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            background: linear-gradient(to bottom, #ff9900, #cc6600);
+            color: white;
             border: none;
-            padding: 0.5rem 1.5rem;
-            margin: 0 0.5rem;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 500;
-            color: #555;
-            transition: all 0.3s;
             border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
         
-        .filter-btn.active, .filter-btn:hover {
-            background-color: #1a2a6c;
-            color: white;
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(to bottom, #ffaa00, #dd7700);
         }
         
-        .gallery {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem 4rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+        button:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
         
-        .photo-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .photo-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-        
-        .photo-img {
+        .progress-container {
             width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block;
+            height: 10px;
+            background: #333;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            overflow: hidden;
         }
         
-        .photo-info {
-            padding: 1.5rem;
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, #ff9900, #ffcc00);
+            border-radius: 5px;
+            transition: width 0.5s;
         }
         
-        .photo-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: #1a2a6c;
-        }
-        
-        .photo-description {
-            color: #666;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-        
-        .photo-meta {
+        .steps {
             display: flex;
-            justify-content: space-between;
-            color: #888;
-            font-size: 0.85rem;
+            flex-direction: column;
+            gap: 15px;
         }
         
-        .about {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            background-color: white;
+        .step {
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            color: #1a2a6c;
-            font-size: 2rem;
-        }
-        
-        .about-content {
+            padding: 15px;
             display: flex;
             align-items: center;
-            gap: 3rem;
+            gap: 15px;
+            opacity: 0.5;
+            transition: all 0.5s;
+            transform: translateX(-20px);
         }
         
-        .about-text {
-            flex: 1;
+        .step.active {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(0);
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
         }
         
-        .about-image {
-            flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        .step.completed {
+            opacity: 0.8;
+            background: rgba(0, 255, 0, 0.1);
         }
         
-        .about-image img {
-            width: 100%;
-            display: block;
-        }
-        
-        footer {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
-            color: white;
-            text-align: center;
-            padding: 3rem 0;
-            margin-top: 4rem;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: transform 0.3s;
-        }
-        
-        .social-links a:hover {
-            transform: translateY(-3px);
-        }
-        
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background-color: #1a2a6c;
-            color: white;
-            width: 50px;
-            height: 50px;
+        .step-icon {
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
-            font-size: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: 99;
+            font-weight: bold;
+            background: #444;
+            flex-shrink: 0;
         }
         
-        .back-to-top.visible {
-            opacity: 1;
+        .step.active .step-icon {
+            background: linear-gradient(135deg, #ff9900, #ffcc00);
+            animation: pulse 1.5s infinite;
         }
         
-        @media (max-width: 768px) {
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .nav-container {
-                flex-direction: column;
-            }
-            
-            .nav-links {
-                margin-top: 1rem;
-            }
-            
-            .nav-links li {
-                margin: 0 0.5rem;
+        .step.completed .step-icon {
+            background: linear-gradient(135deg, #00cc00, #66ff66);
+        }
+        
+        .step-content {
+            flex-grow: 1;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .step-description {
+            color: #cccccc;
+            font-size: 0.9rem;
+        }
+        
+        .treasure-result {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 204, 0, 0.2);
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .treasure-result h2 {
+            color: #ffcc00;
+            margin-bottom: 10px;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes sparkle {
+            0% { opacity: 0; transform: translateY(0) rotate(0); }
+            50% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffcc00;
+            border-radius: 50%;
+            animation: sparkle 1.5s infinite;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
             }
             
             h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
+            }
+            
+            button {
+                padding: 10px 20px;
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1>自然之美</h1>
-            <p class="tagline">探索世界最壮丽的风景摄影作品</p>
-        </div>
-    </header>
+    <h1>神秘寻宝大冒险</h1>
+    <p class="subtitle">跟随线索，解开谜题，找到传说中的宝藏！</p>
     
-    <nav>
-        <div class="nav-container">
-            <div class="logo">风景画廊</div>
-            <ul class="nav-links">
-                <li><a href="#home">首页</a></li>
-                <li><a href="#gallery">作品集</a></li>
-                <li><a href="#about">关于我们</a></li>
-                <li><a href="#contact">联系我们</a></li>
-            </ul>
+    <div class="container">
+        <div class="treasure-map" id="treasureMap">
+            <!-- 动态添加火花效果 -->
         </div>
-    </nav>
-    
-    <div class="filter-buttons">
-        <button class="filter-btn active" data-filter="all">全部</button>
-        <button class="filter-btn" data-filter="mountain">山脉</button>
-        <button class="filter-btn" data-filter="ocean">海洋</button>
-        <button class="filter-btn" data-filter="forest">森林</button>
-        <button class="filter-btn" data-filter="desert">沙漠</button>
+        
+        <div class="controls">
+            <button id="startBtn">开始寻宝</button>
+            <button id="resetBtn" disabled>重新开始</button>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <div class="steps" id="stepsContainer">
+            <div class="step" id="step1">
+                <div class="step-icon">1</div>
+                <div class="step-content">
+                    <div class="step-title">获取初始线索</div>
+                    <div class="step-description">在古老的图书馆里寻找第一个线索...</div>
+                </div>
+            </div>
+            
+            <div class="step" id="step2">
+                <div class="step-icon">2</div>
+                <div class="step-content">
+                    <div class="step-title">解码古代文字</div>
+                    <div class="step-description">破译古代文字中的秘密信息...</div>
+                </div>
+            </div>
+            
+            <div class="step" id="step3">
+                <div class="step-icon">3</div>
+                <div class="step-content">
+                    <div class="step-title">寻找神秘钥匙</div>
+                    <div class="step-description">根据线索找到打开神庙大门的钥匙...</div>
+                </div>
+            </div>
+            
+            <div class="step" id="step4">
+                <div class="step-icon">4</div>
+                <div class="step-content">
+                    <div class="step-title">探索古老神庙</div>
+                    <div class="step-description">进入神庙深处，但要小心守卫...</div>
+                </div>
+            </div>
+            
+            <div class="step" id="step5">
+                <div class="step-icon">5</div>
+                <div class="step-content">
+                    <div class="step-title">解开最终谜题</div>
+                    <div class="step-description">破解宝箱上的古老机关...</div>
+                </div>
+            </div>
+            
+            <div class="step" id="step6">
+                <div class="step-icon">6</div>
+                <div class="step-content">
+                    <div class="step-title">获得宝藏</div>
+                    <div class="step-description">打开宝箱，获得传说中的宝藏！</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="treasure-result" id="treasureResult">
+            <h2 id="resultTitle">寻宝结果</h2>
+            <p id="resultMessage"></p>
+        </div>
     </div>
-    
-    <section class="gallery" id="gallery">
-        <!-- 图片将由JavaScript动态生成 -->
-    </section>
-    
-    <section class="about" id="about">
-        <h2 class="section-title">关于我们</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>我们是一群热爱自然和摄影的爱好者，致力于通过镜头捕捉世界各地的壮丽风景。我们的使命是将大自然的美景带给每一个人，激发人们对自然环境的保护意识。</p>
-                <p>自2010年成立以来，我们的团队已经走过了50多个国家，拍摄了数万张风景照片。我们相信，每一张照片都能讲述一个故事，传递一种情感。</p>
-                <p>无论您是摄影爱好者还是自然爱好者，我们都希望这个网站能为您带来灵感和愉悦。</p>
-            </div>
-            <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="关于我们">
-            </div>
-        </div>
-    </section>
-    
-    <footer id="contact">
-        <div class="footer-content">
-            <h3>联系我们</h3>
-            <p>如果您有任何问题或想与我们合作，请通过以下方式联系我们</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-weibo"></i></a>
-                <a href="#"><i class="fab fa-weixin"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-            </div>
-            <p>邮箱: contact@naturegallery.com</p>
-            <p>电话: 400-123-4567</p>
-            <p>&copy; 2023 自然之美风景摄影网站. 保留所有权利.</p>
-        </div>
-    </footer>
-    
-    <a href="#" class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-    
-    <script>
-        // 图片数据
-        const photos = [
-            {
-                id: 1,
-                title: "雪山日出",
-                description: "喜马拉雅山脉的壮丽日出，金色的阳光洒在雪山顶上。",
-                category: "mountain",
-                image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b",
-                location: "尼泊尔",
-                date: "2023-05-15"
-            },
-            {
-                id: 2,
-                title: "碧蓝海岸",
-                description: "地中海蔚蓝海岸线的迷人景色，清澈的海水与天空相映成趣。",
-                category: "ocean",
-                image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-                location: "希腊",
-                date: "2023-06-22"
-            },
-            {
-                id: 3,
-                title: "迷雾森林",
-                description: "晨雾中的神秘森林，阳光透过树叶洒下斑驳的光影。",
-                category: "forest",
-                image: "https://images.unsplash.com/photo-1448375240586-882707db888b",
-                location: "加拿大",
-                date: "2023-07-10"
-            },
-            {
-                id: 4,
-                title: "沙漠星空",
-                description: "撒哈拉沙漠的浩瀚星空，银河清晰可见，令人震撼。",
-                category: "desert",
-                image: "https://images.unsplash.com/photo-1512012022026-7c49f6ec4676",
-                location: "摩洛哥",
-                date: "2023-04-30"
-            },
-            {
-                id: 5,
-                title: "高山湖泊",
-                description: "阿尔卑斯山脉的高山湖泊，湖水清澈见底，倒映着周围的山峰。",
-                category: "mountain",
-                image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
-                location: "瑞士",
-                date: "2023-08-05"
-            },
-            {
-                id: 6,
-                title: "热带海滩",
-                description: "马尔代夫的白沙滩和碧蓝海水，是度假的理想之地。",
-                category: "ocean",
-                image: "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a",
-                location: "马尔代夫",
-                date: "2023-03-18"
-            },
-            {
-                id: 7,
-                title: "红杉林",
-                description: "加利福尼亚的红杉国家公园，高耸入云的红杉树令人叹为观止。",
-                category: "forest",
-                image: "https://images.unsplash.com/photo-1519834065116-99a03197e490",
-                location: "美国",
-                date: "2023-09-12"
-            },
-            {
-                id: 8,
-                title: "沙漠绿洲",
-                description: "阿联酋沙漠中的一片绿洲，生机勃勃的棕榈树与周围沙漠形成鲜明对比。",
-                category: "desert",
-                image: "https://images.unsplash.com/photo-1548574505-842574cf7d71",
-                location: "阿联酋",
-                date: "2023-02-28"
-            },
-            {
-                id: 9,
-                title: "富士山",
-                description: "樱花季节的富士山，粉色的樱花与白雪覆盖的山顶相映成趣。",
-                category: "mountain",
-                image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3",
-                location: "日本",
-                date: "2023-04-05"
-            }
-        ];
 
-        // 生成图片卡片函数
-        function generatePhotoCards(filter = 'all') {
-            const gallery = document.querySelector('.gallery');
-            gallery.innerHTML = '';
+    <script>
+        // 模拟宝藏地图API（扩展版）
+        class TreasureMap {
+            static getInitialClue() {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve("在古老的图书馆里找到了第一个线索：一张泛黄的地图，上面标记着'月影峡谷'...");
+                    }, 2000);
+                });
+            }
             
-            const filteredPhotos = filter === 'all' 
-                ? photos 
-                : photos.filter(photo => photo.category === filter);
+            static decodeAncientScript(clue) {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        if (!clue) {
+                            reject("没有线索可以解码!");
+                        }
+                        resolve("解码成功!地图指向一座隐藏在密林中的古老神庙，但需要一把特殊的钥匙才能进入...");
+                    }, 2500);
+                });
+            }
             
-            filteredPhotos.forEach(photo => {
-                const card = document.createElement('div');
-                card.className = 'photo-card';
-                card.innerHTML = `
-                    <img src="${photo.image}" alt="${photo.title}" class="photo-img">
-                    <div class="photo-info">
-                        <h3 class="photo-title">${photo.title}</h3>
-                        <p class="photo-description">${photo.description}</p>
-                        <div class="photo-meta">
-                            <span>${photo.location}</span>
-                            <span>${photo.date}</span>
-                        </div>
-                    </div>
-                `;
-                gallery.appendChild(card);
-            });
+            static findKey(location) {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        const random = Math.random();
+                        if (random < 0.3) {
+                            reject("糟糕!在寻找钥匙时遇到了毒蛇，不得不撤退!");
+                        } else {
+                            resolve("在月影峡谷的瀑布后面找到了神秘的青铜钥匙!");
+                        }
+                    }, 3000);
+                });
+            }
+            
+            static searchTemple(location) {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        const random = Math.random();
+                        if (random < 0.4) {
+                            reject("糟糕!遇到了神庙守卫，被迫撤离!");
+                        } else {
+                            resolve("成功进入神庙，在深处找到了一个刻有神秘符号的箱子...");
+                        }
+                    }, 3500);
+                });
+            }
+            
+            static solvePuzzle(box) {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        const random = Math.random();
+                        if (random < 0.2) {
+                            reject("谜题太复杂了，无法解开宝箱的机关!");
+                        } else {
+                            resolve("成功解开谜题!宝箱的机关缓缓打开...");
+                        }
+                    }, 3000);
+                });
+            }
+            
+            static openTreasureBox() {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve("恭喜!你找到了传说中的宝藏——一颗闪耀着神秘光芒的'星辰之石'!");
+                    }, 2000);
+                });
+            }
+        }
+
+        // 获取DOM元素
+        const startBtn = document.getElementById('startBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const progressBar = document.getElementById('progressBar');
+        const treasureResult = document.getElementById('treasureResult');
+        const resultMessage = document.getElementById('resultMessage');
+        const treasureMap = document.getElementById('treasureMap');
+        
+        // 步骤元素
+        const steps = [
+            document.getElementById('step1'),
+            document.getElementById('step2'),
+            document.getElementById('step3'),
+            document.getElementById('step4'),
+            document.getElementById('step5'),
+            document.getElementById('step6')
+        ];
+        
+        // 添加火花效果
+        function addSparkles() {
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 2 + 's';
+                sparkle.style.width = Math.random() * 10 + 5 + 'px';
+                sparkle.style.height = sparkle.style.width;
+                treasureMap.appendChild(sparkle);
+            }
         }
         
-        // 初始化页面
-        document.addEventListener('DOMContentLoaded', function() {
-            // 生成所有图片
-            generatePhotoCards();
-            
-            // 筛选按钮事件
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // 移除所有active类
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    // 为当前按钮添加active类
-                    this.classList.add('active');
-                    // 根据data-filter属性筛选图片
-                    const filter = this.getAttribute('data-filter');
-                    generatePhotoCards(filter);
-                });
-            });
-            
-            // 返回顶部按钮
-            const backToTopButton = document.getElementById('backToTop');
-            
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 300) {
-                    backToTopButton.classList.add('visible');
-                } else {
-                    backToTopButton.classList.remove('visible');
+        // 更新进度条
+        function updateProgress(step) {
+            const progress = (step / steps.length) * 100;
+            progressBar.style.width = progress + '%';
+        }
+        
+        // 激活当前步骤
+        function activateStep(stepIndex) {
+            steps.forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                if (index < stepIndex) {
+                    step.classList.add('completed');
+                } else if (index === stepIndex) {
+                    step.classList.add('active');
                 }
             });
             
-            backToTopButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+            updateProgress(stepIndex);
+        }
+        
+        // 显示结果
+        function showResult(message, isSuccess) {
+            resultMessage.textContent = message;
+            treasureResult.style.display = 'block';
+            treasureResult.style.background = isSuccess 
+                ? 'rgba(0, 255, 0, 0.2)' 
+                : 'rgba(255, 0, 0, 0.2)';
+            
+            const resultTitle = document.getElementById('resultTitle');
+            resultTitle.textContent = isSuccess ? '寻宝成功!' : '寻宝失败';
+            resultTitle.style.color = isSuccess ? '#00ff00' : '#ff0000';
+        }
+        
+        // 重置游戏
+        function resetGame() {
+            steps.forEach(step => {
+                step.classList.remove('active', 'completed');
             });
             
-            // 平滑滚动到锚点
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        });
+            progressBar.style.width = '0%';
+            treasureResult.style.display = 'none';
+            startBtn.disabled = false;
+            resetBtn.disabled = true;
+            
+            // 清除火花效果
+            const sparkles = document.querySelectorAll('.sparkle');
+            sparkles.forEach(sparkle => sparkle.remove());
+        }
+        
+        // 使用async/await重写的寻宝过程
+        async function findTreasureWithAsyncAwait() {
+            try {
+                startBtn.disabled = true;
+                resetBtn.disabled = true;
+                
+                // 步骤1: 获取初始线索
+                activateStep(0);
+                const clue = await TreasureMap.getInitialClue();
+                steps[0].querySelector('.step-description').textContent = clue;
+                
+                // 步骤2: 解码古代文字
+                activateStep(1);
+                const location = await TreasureMap.decodeAncientScript(clue);
+                steps[1].querySelector('.step-description').textContent = location;
+                
+                // 步骤3: 寻找钥匙（新增情节）
+                activateStep(2);
+                const key = await TreasureMap.findKey(location);
+                steps[2].querySelector('.step-description').textContent = key;
+                
+                // 步骤4: 探索神庙
+                activateStep(3);
+                const box = await TreasureMap.searchTemple(location);
+                steps[3].querySelector('.step-description').textContent = box;
+                
+                // 步骤5: 解开谜题（新增情节）
+                activateStep(4);
+                const puzzle = await TreasureMap.solvePuzzle(box);
+                steps[4].querySelector('.step-description').textContent = puzzle;
+                
+                // 步骤6: 获得宝藏
+                activateStep(5);
+                const treasure = await TreasureMap.openTreasureBox();
+                steps[5].querySelector('.step-description').textContent = treasure;
+                
+                // 完成所有步骤
+                updateProgress(steps.length);
+                showResult(treasure, true);
+                addSparkles();
+            } catch (error) {
+                showResult(`任务失败: ${error}`, false);
+            } finally {
+                resetBtn.disabled = false;
+            }
+        }
+        
+        // 事件监听
+        startBtn.addEventListener('click', findTreasureWithAsyncAwait);
+        resetBtn.addEventListener('click', resetGame);
+        
+        // 初始化
+        addSparkles();
     </script>
 </body>
 </html>
